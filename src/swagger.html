@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Referência estática da API Meu Contador, gerada a partir do Swagger/OpenAPI."
+    />
+    <title>Meu Contador API — Referência OpenAPI</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        color: #172033;
+        background: #f4f7fb;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      main { width: min(100% - 32px, 960px); margin: 40px auto; }
+      header {
+        padding: 28px;
+        border-radius: 18px;
+        color: #fff;
+        background: linear-gradient(125deg, #172554, #4f46e5 60%, #7c3aed);
+        box-shadow: 0 16px 40px #17255426;
+      }
+      h1 { margin: 0 0 8px; font-size: clamp(1.7rem, 5vw, 2.4rem); }
+      header p { margin: 0; color: #e0e7ff; }
+      .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+      .badge {
+        padding: 5px 10px;
+        border: 1px solid #ffffff4d;
+        border-radius: 999px;
+        background: #ffffff1a;
+        font-size: 0.82rem;
+      }
+      h2 { margin: 32px 0 14px; font-size: 1.35rem; }
+      .endpoint, .schema, .notice {
+        margin: 12px 0;
+        padding: 18px;
+        border: 1px solid #dbe3ef;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 4px 14px #1725540a;
+      }
+      .endpoint-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+      .method {
+        min-width: 62px;
+        padding: 5px 8px;
+        border-radius: 7px;
+        color: #fff;
+        font-size: 0.76rem;
+        font-weight: 800;
+        text-align: center;
+      }
+      .get { background: #0284c7; }
+      .post { background: #059669; }
+      .put { background: #d97706; }
+      code {
+        padding: 2px 5px;
+        border-radius: 5px;
+        background: #eef2ff;
+        color: #312e81;
+        font-family: ui-monospace, Consolas, monospace;
+        overflow-wrap: anywhere;
+      }
+      p { line-height: 1.6; }
+      .endpoint p { margin: 10px 0 0; color: #475569; }
+      pre {
+        margin: 12px 0 0;
+        padding: 14px;
+        overflow-x: auto;
+        border-radius: 10px;
+        color: #e2e8f0;
+        background: #0f172a;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 10px 8px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+      th { color: #475569; font-size: 0.82rem; }
+      .notice { border-left: 4px solid #f59e0b; color: #475569; }
+      footer { margin: 28px 0; color: #64748b; font-size: 0.82rem; }
+      @media (max-width: 560px) {
+        main { width: min(100% - 20px, 960px); margin: 18px auto; }
+        header, .endpoint, .schema, .notice { padding: 16px; }
+        th, td { padding: 8px 5px; font-size: 0.88rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Meu Contador API</h1>
+        <p>Referência estática baseada no documento Swagger/OpenAPI do backend.</p>
+        <div class="meta">
+          <span class="badge">OpenAPI 3.1.0</span>
+          <span class="badge">Versão 1.0.0</span>
+          <span class="badge">Base local: http://127.0.0.1:8000</span>
+        </div>
+      </header>
+
+      <h2>Endpoints</h2>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method get">GET</span><code>/health</code></div>
+        <p>Verifica se a API está disponível.</p>
+        <pre>{
+  "status": "ok"
+}</pre>
+      </article>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method get">GET</span><code>/api/counter</code></div>
+        <p>Retorna o valor atual do contador e os limites configurados.</p>
+        <pre>{
+  "count": 0,
+  "min": 0,
+  "max": 10
+}</pre>
+      </article>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method post">POST</span><code>/api/counter/increment</code></div>
+        <p>Incrementa o contador em um, sem ultrapassar o valor máximo. Retorna o estado atualizado.</p>
+        <pre>{
+  "count": 1,
+  "min": 0,
+  "max": 10
+}</pre>
+      </article>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method post">POST</span><code>/api/counter/decrement</code></div>
+        <p>Decrementa o contador em um, sem ficar abaixo do valor mínimo. Retorna o estado atualizado.</p>
+        <pre>{
+  "count": 0,
+  "min": 0,
+  "max": 10
+}</pre>
+      </article>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method post">POST</span><code>/api/counter/reset</code></div>
+        <p>Reseta o valor para zero, ajustando-o aos limites atuais quando zero estiver fora do intervalo.</p>
+        <pre>{
+  "count": 0,
+  "min": 0,
+  "max": 10
+}</pre>
+      </article>
+
+      <article class="endpoint">
+        <div class="endpoint-heading"><span class="method put">PUT</span><code>/api/counter/limits</code></div>
+        <p>Atualiza os limites. O contador atual é ajustado para continuar dentro do novo intervalo.</p>
+        <p><strong>Corpo JSON:</strong></p>
+        <pre>{
+  "min": 0,
+  "max": 10
+}</pre>
+        <p>Retorna o estado atualizado. Limites inválidos retornam HTTP <code>422</code>.</p>
+      </article>
+
+      <h2>Modelos</h2>
+      <section class="schema">
+        <h3>CounterResponse</h3>
+        <table>
+          <thead><tr><th>Campo</th><th>Tipo</th><th>Descrição</th></tr></thead>
+          <tbody>
+            <tr><td><code>count</code></td><td>integer</td><td>Valor atual; permanece entre os limites.</td></tr>
+            <tr><td><code>min</code></td><td>integer</td><td>Limite mínimo inclusivo.</td></tr>
+            <tr><td><code>max</code></td><td>integer</td><td>Limite máximo inclusivo.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="schema">
+        <h3>LimitsUpdate</h3>
+        <table>
+          <thead><tr><th>Campo</th><th>Tipo</th><th>Regra</th></tr></thead>
+          <tbody>
+            <tr><td><code>min</code></td><td>integer</td><td>Inteiro seguro para JavaScript.</td></tr>
+            <tr><td><code>max</code></td><td>integer</td><td>Inteiro seguro para JavaScript, maior que <code>min</code>.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside class="notice">
+        Esta página é um snapshot estático e não executa requisições. Para
+        documentação interativa e sempre atualizada, acesse
+        <code>http://127.0.0.1:8000/docs</code> com o backend em execução.
+      </aside>
+
+      <footer>Referência rápida da API Meu Contador · Especificação consultada em 2026-10-03.</footer>
+    </main>
+  </body>
+</html>
